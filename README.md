@@ -7,7 +7,7 @@ Examples
 --------
 
     <?php
-    require 'BrightLocal.php';
+    require 'BrightLocal/BrightLocal.php';
 
     $api = new BrightLocal\Api('YOUR_API_KEY', 'YOUR_API_SECRET');
 
