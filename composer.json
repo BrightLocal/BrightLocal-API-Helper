@@ -1,0 +1,16 @@
+{
+    "name": "BrightLocal/Api",
+    "description": "BrightLocal API Code Examples & Related Code",
+    "minimum-stability": "stable",
+    "authors": [
+        {
+            "name": "Ed Eliot",
+            "email": "me@ejeliot.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.10",
+        "ext-curl": "*",
+        "ext-json": "*"
+    }
+}
