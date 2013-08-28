@@ -9,7 +9,7 @@ class HttpRequest {
     /**
      * @var int
      */
-    protected static $lastHttpCode;
+    public static $lastHttpCode;
 
     /**
      * @param $url
