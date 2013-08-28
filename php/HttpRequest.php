@@ -30,7 +30,6 @@ class HttpRequest {
         ));
         $result = curl_exec($curl);
         static::$lastHttpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-        curl_close($curl);
         return in_array(static::$lastHttpCode, array(200, 403, 503)) ? json_decode($result, true) : false;
     }
 }
