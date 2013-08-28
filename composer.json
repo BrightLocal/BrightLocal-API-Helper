@@ -1,6 +1,6 @@
 {
     "name": "BrightLocal/Api",
-    "description": "BrightLocal API Code Examples & Related Code",
+    "description": "BrightLocal API wrapper and examples",
     "minimum-stability": "stable",
     "authors": [
         {
