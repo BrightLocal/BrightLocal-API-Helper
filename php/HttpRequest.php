@@ -7,14 +7,6 @@ namespace BrightLocal;
  */
 class HttpRequest {
     /**
-     * @var array
-     */
-    protected static $baseOptions = array(
-        CURLOPT_HEADER            => 0,
-        CURLOPT_RETURNTRANSFER    => 1,
-        CURLOPT_FOLLOWLOCATION    => 1
-    );
-    /**
      * @var int
      */
     protected static $lastHttpCode;
