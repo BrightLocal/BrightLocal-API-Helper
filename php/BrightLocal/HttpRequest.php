@@ -3,17 +3,19 @@ namespace BrightLocal;
 
 /**
  * Class HttpRequest
+ *
  * @package BrightLocal
  */
 class HttpRequest {
+
     /**
      * @var int
      */
     public static $lastHttpCode;
 
     /**
-     * @param $url
-     * @param $params
+     * @param string $url
+     * @param array $params
      * @return bool|mixed
      */
     public static function post($url, $params = array()) {
@@ -22,11 +24,11 @@ class HttpRequest {
             CURLOPT_HEADER            => 0,
             CURLOPT_RETURNTRANSFER    => 1,
             CURLOPT_FOLLOWLOCATION    => 1,
-            CURLOPT_TIMEOUT           => 30, // 30 seconds
-            CURLOPT_CONNECTTIMEOUT    => 10, // 10 seconds
+            CURLOPT_TIMEOUT           => 30, // seconds
+            CURLOPT_CONNECTTIMEOUT    => 10, // seconds
             CURLOPT_DNS_CACHE_TIMEOUT => 86400, // 1 day
-            CURLOPT_POSTFIELDS       => http_build_query($params),
-            CURLOPT_POST             => true
+            CURLOPT_POSTFIELDS        => http_build_query($params),
+            CURLOPT_POST              => true
         ));
         $result = curl_exec($curl);
         static::$lastHttpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
