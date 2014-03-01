@@ -35,7 +35,7 @@ class Api {
      * @return array
      */
     public function get_sig_and_expires() {
-        $expires = time() + self::MAX_EXPIRY;
+        $expires = gmdate('U') + self::MAX_EXPIRY;
         $sig = base64_encode(hash_hmac('sha1', $this->apiKey . $expires, $this->apiSecret, true));
         return array($sig, $expires);
     }
