@@ -57,6 +57,7 @@ class Api {
      * @param string $method
      * @param array $params
      * @param string $httpMethod
+     * @throws \Exception
      * @return bool|mixed
      */
     public function call($method, $params = array(), $httpMethod = self::HTTP_METHOD_POST) {
@@ -73,7 +74,15 @@ class Api {
             'expires' => $expires
         ), $params);
         $client = new \GuzzleHttp\Client;
-        $result = $client->$httpMethod($this->endPoint . $method, $params);
+        if ($httpMethod === 'GET') {
+            $result = $client->get($this->endpoint . $method, array(
+                'query' => $params
+            ));
+        } else {
+            $result = $client->$httpMethod($this->endpoint . $method, array(
+                'body' => $params
+            ));
+        }
         $this->lastHttpCode = $result->getStatusCode();
         return $result->json();
     }
