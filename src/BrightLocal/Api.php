@@ -56,6 +56,7 @@ class Api {
     /**
      * @param string $method
      * @param array $params
+     * @param string $httpMethod
      * @return bool|mixed
      */
     public function call($method, $params = array(), $httpMethod = self::HTTP_METHOD_POST) {
