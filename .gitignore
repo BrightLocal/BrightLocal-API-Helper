@@ -1,0 +1,4 @@
+php/vendor/*
+.idea
+atlassian-ide-plugin.xml
+php/composer.lock

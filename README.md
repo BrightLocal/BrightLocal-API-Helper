@@ -34,3 +34,11 @@ Examples
     print_r($api->call('/v2/ct/get', array(
         'report-id' => 259
     )));
+
+    // create a V1 batch
+    $batchApi = new BatchApiV1($api);
+    $batchApi->create();
+
+    // create a V4 batch
+    $batchApi = new BatchApiV4($api);
+    $batchApi->create();
