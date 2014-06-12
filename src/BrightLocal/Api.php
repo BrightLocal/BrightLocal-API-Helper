@@ -61,7 +61,7 @@ class Api {
      */
     public function call($method, $params = array(), $httpMethod = self::HTTP_METHOD_POST) {
         if (in_array($httpMethod, $this->allowedHttpMethods)) {
-            throw new Exception('Invalid HTTP method specified.');
+            throw new \Exception('Invalid HTTP method specified.');
         }
         $method = str_replace('/seo-tools/api', '', $method);
         // some methods only require api key but there's no harm in also sending
