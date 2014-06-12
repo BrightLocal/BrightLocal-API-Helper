@@ -60,7 +60,7 @@ class Api {
      * @return bool|mixed
      */
     public function call($method, $params = array(), $httpMethod = self::HTTP_METHOD_POST) {
-        if (in_array($this->allowedHttpMethods, $httpMethod)) {
+        if (in_array($httpMethod, $this->allowedHttpMethods)) {
             throw new Exception('Invalid HTTP method specified.');
         }
         $method = str_replace('/seo-tools/api', '', $method);
@@ -72,7 +72,7 @@ class Api {
             'sig'     => $sig,
             'expires' => $expires
         ), $params);
-        $client = new GuzzleHttp\Client;
+        $client = new \GuzzleHttp\Client;
         $result = $client->$httpMethod($this->endPoint . $method, $params);
         $this->lastHttpCode = $result->getStatusCode();
         return $result->json();
