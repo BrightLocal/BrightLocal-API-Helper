@@ -1,11 +1,13 @@
 <?php
-namespace BrightLocal;
+namespace BrightLocal\Batches;
+
+use BrightLocal\Api;
 
 /**
- * Class BatchApiV4
+ * Class V4
  * @package BrightLocal
  */
-class BatchApiV4 {
+class V4 {
     /** @var \BrightLocal\Api */
     protected $api;
 
