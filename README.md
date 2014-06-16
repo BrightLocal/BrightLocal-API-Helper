@@ -12,7 +12,7 @@ Step 1: Add to the requires section of your composer.json file.
 
 ```javascript
 "require": {
-    "brightlocal/api": "dev-develop"
+    "brightlocal/api": "0.*"
 }
 ```
 
