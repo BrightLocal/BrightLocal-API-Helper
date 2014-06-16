@@ -48,7 +48,7 @@ class Api {
      * @return array
      */
     public function get_sig_and_expires() {
-        $expires = (int) gmdate('U') + self::MAX_EXPIRY;
+        $expires = (int) gmdate('U') + static::MAX_EXPIRY;
         $sig = base64_encode(hash_hmac('sha1', $this->apiKey . $expires, $this->apiSecret, true));
         return array($sig, $expires);
     }
@@ -74,14 +74,10 @@ class Api {
             'expires' => $expires
         ), $params);
         $client = new \GuzzleHttp\Client;
-        if ($httpMethod === 'GET') {
-            $result = $client->get($this->endpoint . $method, array(
-                'query' => $params
-            ));
+        if ($httpMethod === static::HTTP_METHOD_GET) {
+            $result = $client->get($this->endpoint . $method, array('query' => $params));
         } else {
-            $result = $client->$httpMethod($this->endpoint . $method, array(
-                'body' => $params
-            ));
+            $result = $client->$httpMethod($this->endpoint . $method, array('body' => $params));
         }
         $this->lastHttpCode = $result->getStatusCode();
         return $result->json();
