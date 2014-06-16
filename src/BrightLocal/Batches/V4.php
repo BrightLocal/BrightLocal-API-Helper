@@ -20,27 +20,29 @@ class V4 {
 
     /**
      * @param bool $stopOnJobError
-     * @return bool|mixed
+     * @return bool|int
      */
     public function create($stopOnJobError = false) {
-        return $this->api->call('/v4/batch', array(
+        $result = $this->api->call('/v4/batch', array(
             'stop-on-job-error' => (int) $stopOnJobError
         ));
+        return $result['success'] ? $result['batch-id'] : false;
     }
 
     /**
      * @param int $batchId
-     * @return bool|mixed
+     * @return bool
      */
     public function commit($batchId) {
-        return $this->api->call('/v4/batch', array(
+        $result = $this->api->call('/v4/batch', array(
             'batch-id' => $batchId
         ), Api::HTTP_METHOD_PUT);
+        return $result['success'];
     }
 
     /**
      * @param int $batchId
-     * @return bool|mixed
+     * @return mixed
      */
     public function get_results($batchId) {
         return $this->api->call('/v4/batch', array(
@@ -50,11 +52,12 @@ class V4 {
 
     /**
      * @param int $batchId
-     * @return bool|mixed
+     * @return bool
      */
     public function delete($batchId) {
-        return $this->api->call('/v4/batch', array(
+        $results = $this->api->call('/v4/batch', array(
             'batch-id' => $batchId
         ), Api::HTTP_METHOD_DELETE);
+        return $results['success'];
     }
 }

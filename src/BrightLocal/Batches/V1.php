@@ -20,22 +20,24 @@ class V1 {
 
     /**
      * @param string $customerRef
-     * @return bool|mixed
+     * @return bool|string
      */
     public function create($customerRef = '') {
-        return $this->api->call('/v1/create-batch-id', array(
+        $results = $this->api->call('/v1/create-batch-id', array(
             'customer-ref' => $customerRef
         ));
+        return $results['response']['status'] === 'added' ? $results['response']['batch-id'] : false;
     }
 
     /**
      * @param string $batchId
-     * @return bool|mixed
+     * @return bool
      */
     public function commit($batchId) {
-        return $this->api->call('/v1/commit-batch', array(
+        $results = $this->api->call('/v1/commit-batch', array(
             'batch-id' => $batchId
         ));
+        return $results['response']['status'] === 'Committed';
     }
 
     /**

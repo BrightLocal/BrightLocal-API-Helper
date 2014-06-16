@@ -18,11 +18,9 @@ $api = new Api(API_KEY, API_SECRET);
 $batchApi = new BatchApi($api);
 
 // Step 1: Create a new batch
-$result = $batchApi->create();
+$batchId = $batchApi->create();
 
-if ($result['success']) {
-    $batchId = $result['batch-id'];
-
+if ($batchId) {
     printf('Created batch ID %d%s', $batchId, PHP_EOL);
 
     // Step 2: Add review lookup jobs to batch
@@ -38,9 +36,7 @@ if ($result['success']) {
     }
 
     // Step 3: Commit batch (to signal all jobs added, processing starts)
-    $result = $batchApi->commit($batchId);
-
-    if ($result['success']) {
+    if ($batchApi->commit($batchId)) {
         echo 'Committed batch successfully.'.PHP_EOL;
     }
 }
