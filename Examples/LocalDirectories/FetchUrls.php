@@ -7,12 +7,6 @@ require 'vendor/autoload.php';
 use BrightLocal\Api;
 use BrightLocal\Batches\V4 as BatchApi;
 
-$business = array(
-    'business-names'  => 'Eleven Madison Park',
-    'country'         => 'USA',
-    'city'            => 'New York',
-    'postcode'        => '10010'
-);
 $directories = array('google', 'citysearch', 'dexknows', 'kudzu', 'manta');
 
 // setup API wrappers
