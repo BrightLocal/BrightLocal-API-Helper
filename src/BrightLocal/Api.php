@@ -74,10 +74,14 @@ class Api {
             'expires' => $expires
         ), $params);
         $client = new \GuzzleHttp\Client;
-        if ($httpMethod === static::HTTP_METHOD_GET) {
-            $result = $client->get($this->endpoint . $method, array('query' => $params));
-        } else {
-            $result = $client->$httpMethod($this->endpoint . $method, array('body' => $params));
+        try {
+            if ($httpMethod === static::HTTP_METHOD_GET) {
+                $result = $client->get($this->endpoint . $method, array('query' => $params));
+            } else {
+                $result = $client->$httpMethod($this->endpoint . $method, array('body' => $params));
+            }
+        } catch (Exception $e) {
+            $result = $e->getResponse();
         }
         $this->lastHttpCode = $result->getStatusCode();
         return $result->json();
