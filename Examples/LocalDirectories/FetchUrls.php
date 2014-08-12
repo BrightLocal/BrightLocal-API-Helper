@@ -2,7 +2,7 @@
 define('API_KEY', '<API KEY HERE>');
 define('API_SECRET', '<API SECRET HERE>');
 
-require 'vendor/autoload.php';
+require '../../vendor/autoload.php';
 
 use BrightLocal\Api;
 use BrightLocal\Batches\V4 as BatchApi;
