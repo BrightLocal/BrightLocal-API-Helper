@@ -92,6 +92,42 @@ class Api {
     }
 
     /**
+     * @param string $method
+     * @param array $params
+     * @return bool|mixed
+     */
+    public function get($method, $params = array()) {
+        return $this->call($method, $params, static::HTTP_METHOD_GET);
+    }
+
+    /**
+     * @param string $method
+     * @param array $params
+     * @return bool|mixed
+     */
+    public function post($method, $params = array()) {
+        return $this->call($method, $params, static::HTTP_METHOD_POST);
+    }
+
+    /**
+     * @param string $method
+     * @param array $params
+     * @return bool|mixed
+     */
+    public function put($method, $params = array()) {
+        return $this->call($method, $params, static::HTTP_METHOD_PUT);
+    }
+
+    /**
+     * @param string $method
+     * @param array $params
+     * @return bool|mixed
+     */
+    public function delete($method, $params = array()) {
+        return $this->call($method, $params, static::HTTP_METHOD_DELETE);
+    }
+
+    /**
      * @return int
      */
     public function get_last_http_code() {
