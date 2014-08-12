@@ -3,7 +3,6 @@ namespace BrightLocal;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Exception\ParseException;
 use Exception;
 
 /**
@@ -86,8 +85,6 @@ class Api {
                 $result = $client->$httpMethod($this->endpoint . $method, array('body' => $params));
             }
         } catch (RequestException $e) {
-            $result = $e->getResponse();
-        } catch (ParseException $e) {
             $result = $e->getResponse();
         }
         $this->lastHttpCode = $result->getStatusCode();
