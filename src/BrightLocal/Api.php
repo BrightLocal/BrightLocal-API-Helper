@@ -1,6 +1,10 @@
 <?php
 namespace BrightLocal;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
+use Exception;
+
 /**
  * Class Api
  *
@@ -73,14 +77,14 @@ class Api {
             'sig'     => $sig,
             'expires' => $expires
         ), $params);
-        $client = new \GuzzleHttp\Client;
+        $client = new Client;
         try {
             if ($httpMethod === static::HTTP_METHOD_GET) {
                 $result = $client->get($this->endpoint . $method, array('query' => $params));
             } else {
                 $result = $client->$httpMethod($this->endpoint . $method, array('body' => $params));
             }
-        } catch (Exception $e) {
+        } catch (RequestException $e) {
             $result = $e->getResponse();
         }
         $this->lastHttpCode = $result->getStatusCode();

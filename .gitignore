@@ -1,4 +1,4 @@
-php/vendor/*
+vendor
 .idea
 atlassian-ide-plugin.xml
-php/composer.lock
+composer.lock
