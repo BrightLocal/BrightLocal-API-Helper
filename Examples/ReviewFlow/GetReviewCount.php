@@ -3,9 +3,10 @@ require '../Auth.php';
 require '../../vendor/autoload.php';
 
 use BrightLocal\Api;
-use BrightLocal\Batches\V4 as BatchApi;
 
-// setup API wrappers
 $api = new Api(API_KEY, API_SECRET, API_ENDPOINT);
-$batchApi = new BatchApi($api);
-print_r($batchApi->get_results($argv[1]));
+$count = $api->get('/v4/rf/reviews/all/count', [
+    'report-id'  => 1,
+    'start-date' => '2014-01-01'
+]);
+print_r($count);

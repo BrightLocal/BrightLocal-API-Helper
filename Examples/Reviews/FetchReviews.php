@@ -1,7 +1,5 @@
 <?php
-define('API_KEY', '<API KEY HERE>');
-define('API_SECRET', '<API SECRET HERE>');
-
+require '../Auth.php';
 require '../../vendor/autoload.php';
 
 use BrightLocal\Api;
@@ -14,7 +12,7 @@ $profileUrls = array(
 );
 
 // setup API wrappers
-$api = new Api(API_KEY, API_SECRET);
+$api = new Api(API_KEY, API_SECRET, API_ENDPOINT);
 $batchApi = new BatchApi($api);
 
 // Step 1: Create a new batch
