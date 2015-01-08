@@ -5,9 +5,7 @@ require '../../vendor/autoload.php';
 use BrightLocal\Api;
 
 $api = new Api(API_KEY, API_SECRET, API_ENDPOINT);
-$reviews = $api->get('/v4/rf/reviews/all', [
-    'report-id' => 1,
-    'offset'    => 0,
-    'limit'     => 20
+$counts = $api->get('/v4/rf/reviews/stars/count', [
+    'report-id'  => 1
 ]);
-print_r($reviews);
+print_r($counts);
