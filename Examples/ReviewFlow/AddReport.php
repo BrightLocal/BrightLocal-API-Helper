@@ -6,7 +6,7 @@ use BrightLocal\Api;
 
 $api = new Api(API_KEY, API_SECRET, API_ENDPOINT);
 $success = $api->post('/v4/rf', [
-    'report-name'            => 'Le Bernardin',
+    'report-name'            => 'Le Bernardin 4',
     'client-id'              => 0,
     'business-name'          => 'Le Bernardin',
     'contact-telephone'      => '+1 212-554-1515',
