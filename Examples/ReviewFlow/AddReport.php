@@ -5,7 +5,7 @@ require '../../vendor/autoload.php';
 use BrightLocal\Api;
 
 $api = new Api(API_KEY, API_SECRET, API_ENDPOINT);
-$success = $api->post('/v4/rf', [
+$success = $api->post('/v4/rf/add', [
     'report-name'            => 'Le Bernardin',
     'client-id'              => 0,
     'business-name'          => 'Le Bernardin',

@@ -5,8 +5,7 @@ require '../../vendor/autoload.php';
 use BrightLocal\Api;
 
 $api = new Api(API_KEY, API_SECRET, API_ENDPOINT);
-$reviews = $api->get('/v4/rf/reviews', [
-    'report-id' => 1,
+$reviews = $api->get('/v4/rf/1/reviews', [
     'offset'    => 0,
     'limit'     => 20,
     'sort'      => 'asc', // asc or desc
