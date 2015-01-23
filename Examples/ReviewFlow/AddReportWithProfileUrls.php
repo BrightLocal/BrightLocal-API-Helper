@@ -17,22 +17,22 @@ $success = $api->post('/v4/rf/add', [
     'country'                => 'USA', // 3 letter iso code
     'schedule'               => 'M', // D (Daily), W (Weekly) or M (Monthly)
     'run-on'                 => 1, // Day of week or day of month
-    'receive-email-alerts'   => 'no', // yes or no
+    'receive-email-alerts'   => 0, // 1 or 0
     'alert-email-addresses'  => '["user1@test.com","user2@test.com","user3@test.com"]',
     'white-label-profile-id' => null,
-    'is-public'              => 'no', // yes or no
+    'is-public'              => 1, // 1 or 0
     'directories'            => json_encode([
         'yellowbot' => [
             'url'     => 'http://www.yellowbot.com/le-bernardin-new-york-ny.html',
-            'include' => 'yes'
+            'include' => 1
         ],
         'yellowpages' => [
             'url'     => 'http://www.yellowpages.com/new-york-ny/mip/le-bernardin-9909153',
-            'include' => 'yes'
+            'include' => 1
         ],
         'yelp' => [
             'url'     => 'http://www.yelp.com/biz/le-bernardin-new-york',
-            'include' => 'yes'
+            'include' => 1
         ]
     ])
 ]);
