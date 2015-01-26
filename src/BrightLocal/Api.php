@@ -42,8 +42,8 @@ class Api {
      * @param string $apiSecret
      * @param string $endpoint
      */
-    public function __construct($apiKey, $apiSecret, $endpoint = self::ENDPOINT) {
-        $this->endpoint = $endpoint;
+    public function __construct($apiKey, $apiSecret, $endpoint = '') {
+        $this->endpoint = empty($endpoint) ? static::ENDPOINT : $endpoint;
         $this->apiKey = $apiKey;
         $this->apiSecret = $apiSecret;
     }
