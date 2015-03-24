@@ -60,4 +60,15 @@ class V4 {
         ), Api::HTTP_METHOD_DELETE);
         return $results['success'];
     }
+    
+    /**
+     * @param int $batchId
+     * @return bool
+     */
+    public function stop($batchId) {
+        $results = $this->api->call('/v4/batch/stop', array(
+            'batch-id' => $batchId
+        ), Api::HTTP_METHOD_PUT);
+        return $results['success'];
+    }
 }
