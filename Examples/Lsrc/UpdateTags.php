@@ -11,7 +11,7 @@ if ($csv = fopen(UPDATES_FILE, 'r')) {
     fgetcsv($csv); // skip header
     while (($entry = fgetcsv($csv)) !== false) {
         if (count($entry) === 2) {
-            $campaignId = (int)$entry[0];
+            $campaignId = (int) $entry[0];
             // tidy up tags and remove duplicates
             $tags = explode('|', trim($entry[1]));
             array_walk($tags, function(&$tag) {
