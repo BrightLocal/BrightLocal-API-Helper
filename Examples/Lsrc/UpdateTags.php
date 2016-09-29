@@ -8,6 +8,7 @@ use BrightLocal\Api;
 
 if ($csv = fopen(UPDATES_FILE, 'r')) {
     $api = new Api(API_KEY, API_SECRET, API_ENDPOINT);
+    fgetcsv($csv); // skip header
     while (($entry = fgetcsv($csv)) !== false) {
         if (count($entry) === 2) {
             $campaignId = (int)$entry[0];
