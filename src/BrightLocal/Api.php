@@ -3,7 +3,6 @@ namespace BrightLocal;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
-use Exception;
 
 /**
  * Class Api
@@ -82,13 +81,15 @@ class Api {
             if ($httpMethod === static::HTTP_METHOD_GET) {
                 $result = $client->get($this->endpoint . '/' . ltrim($method, '/'), array('query' => $params));
             } else {
-                $result = $client->$httpMethod($this->endpoint . '/' . ltrim($method, '/'), array('body' => $params));
+                $result = $client->$httpMethod($this->endpoint . '/' . ltrim($method, '/'), array('form_params' => $params));
             }
         } catch (RequestException $e) {
             $result = $e->getResponse();
         }
         $this->lastHttpCode = $result->getStatusCode();
-        return $result->json();
+        $content = $result->getBody()->getContents();
+        $result->getBody()->close();
+        return \GuzzleHttp\json_decode($content, true);
     }
 
     /**
