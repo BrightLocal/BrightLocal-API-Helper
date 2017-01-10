@@ -63,7 +63,7 @@ class Api {
      * @throws \Exception
      * @return bool|mixed
      */
-    public function call($method, $params = array(), $httpMethod = self::HTTP_METHOD_POST) {
+    public function call($method, $params = [], $httpMethod = self::HTTP_METHOD_POST) {
         if (!in_array($httpMethod, $this->allowedHttpMethods)) {
             throw new \Exception('Invalid HTTP method specified.');
         }
@@ -71,18 +71,14 @@ class Api {
         // some methods only require api key but there's no harm in also sending
         // sig and expires to those methods
         list($sig, $expires) = $this->get_sig_and_expires();
-        $params = array_merge(array(
+        $params = array_merge([
             'api-key' => $this->apiKey,
             'sig'     => $sig,
             'expires' => $expires
-        ), $params);
+        ], $params);
         $client = new Client;
         try {
-            if ($httpMethod === static::HTTP_METHOD_GET) {
-                $result = $client->get($this->endpoint . '/' . ltrim($method, '/'), array('query' => $params));
-            } else {
-                $result = $client->$httpMethod($this->endpoint . '/' . ltrim($method, '/'), array('form_params' => $params));
-            }
+            $result = $client->$httpMethod($this->endpoint . '/' . ltrim($method, '/'), $this->get_options($httpMethod, $params));
         } catch (RequestException $e) {
             $result = $e->getResponse();
         }
@@ -133,5 +129,37 @@ class Api {
      */
     public function get_last_http_code() {
         return $this->lastHttpCode;
+    }
+
+    /**
+     * @param $httpMethod
+     * @param array $params
+     * @return array
+     */
+    private function get_options(string $httpMethod, array $params):array {
+        if ($httpMethod === static::HTTP_METHOD_GET) {
+            return ['query' => $params];
+        }
+        foreach ($params as $param) {
+            if (is_resource($param)) {
+                return ['multipart' => $this->convert_to_multipart($params)];
+            }
+        }
+        return ['form_params' => $params];
+    }
+
+    /**
+     * @param array $params
+     * @return array
+     */
+    private function convert_to_multipart(array $params):array {
+        $multipart = [];
+        foreach ($params as $key => $value) {
+            $multipart[] = [
+                'name'     => $key,
+                'contents' => $value,
+            ];
+        }
+        return $multipart;
     }
 }
