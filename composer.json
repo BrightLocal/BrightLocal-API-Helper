@@ -1,5 +1,5 @@
 {
-    "name": "brightlocal/api",
+    "name": "masana/brightlocal-api",
     "description": "BrightLocal API wrapper and examples",
     "minimum-stability": "stable",
     "authors": [
