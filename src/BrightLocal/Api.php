@@ -136,7 +136,7 @@ class Api {
      * @param array $params
      * @return array
      */
-    private function get_options(string $httpMethod, array $params):array {
+    private function get_options($httpMethod, $params) {
         if ($httpMethod === static::HTTP_METHOD_GET) {
             return ['query' => $params];
         }
@@ -152,7 +152,7 @@ class Api {
      * @param array $params
      * @return array
      */
-    private function convert_to_multipart(array $params):array {
+    private function convert_to_multipart($params) {
         $multipart = [];
         foreach ($params as $key => $value) {
             $multipart[] = [
